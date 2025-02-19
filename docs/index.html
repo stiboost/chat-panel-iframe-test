@@ -15,26 +15,10 @@
             height: 100vh;
             background-color: #f9f9f9;
             }
-
-        .chat-trigger {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            cursor: pointer;
-            background-color: #0078ff;
-            border: none;
-            color: white;
-            font-size: 16px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+        </style>
 </head>
 
 <body>
-
-    <button class="chat-trigger">Chat</button>
 
     <script src="https://tss.boost.ai/chatPanel/chatPanel.js"></script>
     <script>
@@ -60,11 +44,17 @@
         var config = {
             chatPanel: {
                 styling: { pace: "supersonic", position: { spacingBottom: 0, spacingRight: 0 } }
+            },
+            trigger: {
+                smallPositionX: 0,
+                smallPositionY: 0,
+                largePositionX: 0,
+                largePositionY: 0,
             }
         };
 
         var { chatPanel } = window.boostInit('tss', config);
-        resize(64, 40, { initial: true });
+        resize(64, 64, { initial: true });
 
         document.querySelector('.chat-trigger').addEventListener('click', function () {
             chatPanel.show();
@@ -76,11 +66,11 @@
         })
         boost.chatPanel.addEventListener("chatPanelClosed", function (event) {
             console.log("Chat panel opened");
-            resize(64, 40); // height 50, width 50
+            resize(64, 64); // height 50, width 50
         })
         boost.chatPanel.addEventListener("chatPanelMinimized", function (event) {
             console.log("Chat panel opened");
-            resize(64, 40); // height 50, width 50
+            resize(64, 64); // height 50, width 50
         });
     </script>
 
