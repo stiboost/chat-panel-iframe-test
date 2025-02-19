@@ -38,7 +38,7 @@
 
     <script src="https://tss.boost.ai/chatPanel/chatPanel.js"></script>
     <script>
-        function resize(height, width, options = {}) {
+        function resize(width, height, options = {}) {
             let urlParams = new URLSearchParams(document.location.search);
             const iframe_id = urlParams.get("floating_iframe_id") // gets iframe id
             //const coupahost = urlParams.get("coupahost") // gets coupahost 
@@ -73,15 +73,15 @@
 
         boost.chatPanel.addEventListener("chatPanelOpened", function (event) {
             console.log("Chat panel opened");
-            resize(300, 300); // height 300, width 300
+            resize(360, 550); // height 300, width 300
         })
         boost.chatPanel.addEventListener("chatPanelClosed", function (event) {
             console.log("Chat panel opened");
-            resize(50, 50); // height 50, width 50
+            resize(64, 40); // height 50, width 50
         })
         boost.chatPanel.addEventListener("chatPanelMinimized", function (event) {
             console.log("Chat panel opened");
-            resize(50, 50); // height 50, width 50
+            resize(64, 40); // height 50, width 50
         });
     </script>
 
