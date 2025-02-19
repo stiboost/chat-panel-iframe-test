@@ -1,13 +1,90 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            h1 {
-                background-color: hotpink;
+<html lang="nb">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Chat Panel</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
             }
-        </style>
-    </head>
-    <body>
-        <h1>Test!</h1>
-    </body>
+
+        .chat-trigger {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            cursor: pointer;
+            background-color: #0078ff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="chat-trigger">Chat</button>
+
+    <script src="https://tss.boost.ai/chatPanel/chatPanel.js"></script>
+    <script>
+        function resize(height, width, options = {}) {
+            let urlParams = new URLSearchParams(document.location.search);
+            const iframe_id = urlParams.get("floating_iframe_id") // gets iframe id
+            //const coupahost = urlParams.get("coupahost") // gets coupahost 
+            window.parent.postMessage(
+                {
+                    action: "resize",
+                    client_id: "5e2a0395-8258-456f-9c01-7f491529ca94",
+                    iframe_id: iframe_id,
+                    data: {
+                        height: height, // height in px
+                        width: width, // width in px
+                        initial: options.initial, // Set this to true at the time of page load, false otherwise
+                    },
+                },
+                "*" // substitute * with the coupahost URL for enhanced security
+            );
+        }
+
+        var config = {
+            chatPanel: {
+                styling: { pace: "supersonic", position: { spacingBottom: 0, spacingRight: 0 } }
+            }
+        };
+
+        var { chatPanel } = window.boostInit('tss', config);
+        chatPanel.show();
+        resize({ initial: true });
+
+        document.querySelector('.chat-trigger').addEventListener('click', function () {
+            chatPanel.show();
+        });
+
+        boost.chatPanel.addEventListener("chatPanelOpened", function (event) {
+            console.log("Chat panel opened");
+            resize(300, 300); // height 300, width 300
+        })
+        boost.chatPanel.addEventListener("chatPanelClosed", function (event) {
+            console.log("Chat panel opened");
+            resize(50, 50); // height 50, width 50
+        })
+        boost.chatPanel.addEventListener("chatPanelMinimized", function (event) {
+            console.log("Chat panel opened");
+            resize(50, 50); // height 50, width 50
+        });
+    </script>
+
+</body>
+
 </html>
