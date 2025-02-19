@@ -56,10 +56,6 @@
         var { chatPanel } = window.boostInit('tss', config);
         resize(64, 64, { initial: true });
 
-        document.querySelector('.chat-trigger').addEventListener('click', function () {
-            chatPanel.show();
-        });
-
         chatPanel.addEventListener("chatPanelOpened", function (event) {
             console.log("Chat panel opened");
             resize(360, 550); // height 300, width 300
