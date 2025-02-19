@@ -14,8 +14,8 @@
             align-items: center;
             height: 100vh;
             background-color: #f9f9f9;
-            }
-        </style>
+        }
+    </style>
 </head>
 
 <body>
@@ -24,22 +24,25 @@
     <script>
         function resize(width, height, options = {}) {
             let urlParams = new URLSearchParams(document.location.search);
-            const iframe_id = urlParams.get("floating_iframe_id") // gets iframe id
+            const iframe_id = urlParams.get("floating_iframe_id");
 
             console.log(`Resize was called on iframe_id: ${iframe_id} with h:${height} w:${width} options:`, options);
-            //const coupahost = urlParams.get("coupahost") // gets coupahost 
+            const coupahost = urlParams.get("coupahost");
+
+            const postMessageOptions = {
+                action: "resize",
+                client_id: "5e2a0395-8258-456f-9c01-7f491529ca94",
+                iframe_id: iframe_id,
+                data: {
+                    height: height, // height in px
+                    width: width, // width in px
+                    initial: options.initial, // Set this to true at the time of page load, false otherwise
+                }
+            }
+
             window.parent.postMessage(
-                {
-                    action: "resize",
-                    client_id: "5e2a0395-8258-456f-9c01-7f491529ca94",
-                    iframe_id: iframe_id,
-                    data: {
-                        height: height, // height in px
-                        width: width, // width in px
-                        initial: options.initial, // Set this to true at the time of page load, false otherwise
-                    },
-                },
-                "*" // substitute * with the coupahost URL for enhanced security
+                postMessageOptions,
+                coupahost
             );
         }
 
