@@ -28,6 +28,7 @@
 
             console.log(`Resize was called on iframe_id: ${iframe_id} with h:${height} w:${width} options:`, options);
             const coupahost = urlParams.get("coupahost");
+            const parentUrl = `https://${coupahost}`;
 
             const postMessageOptions = {
                 action: "resize",
@@ -44,7 +45,7 @@
 
             window.parent.postMessage(
                 postMessageOptions,
-                `https://${coupahost}`
+                parentUrl,
             );
         }
 
