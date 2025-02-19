@@ -60,15 +60,15 @@
             chatPanel.show();
         });
 
-        boost.chatPanel.addEventListener("chatPanelOpened", function (event) {
+        chatPanel.addEventListener("chatPanelOpened", function (event) {
             console.log("Chat panel opened");
             resize(360, 550); // height 300, width 300
         })
-        boost.chatPanel.addEventListener("chatPanelClosed", function (event) {
+        chatPanel.addEventListener("chatPanelClosed", function (event) {
             console.log("Chat panel opened");
             resize(64, 64); // height 50, width 50
         })
-        boost.chatPanel.addEventListener("chatPanelMinimized", function (event) {
+        chatPanel.addEventListener("chatPanelMinimized", function (event) {
             console.log("Chat panel opened");
             resize(64, 64); // height 50, width 50
         });
