@@ -25,6 +25,8 @@
         function resize(width, height, options = {}) {
             let urlParams = new URLSearchParams(document.location.search);
             const iframe_id = urlParams.get("floating_iframe_id") // gets iframe id
+
+            console.log(`Resize was called on iframe_id: ${iframe_id} with h:${height} w:${width} options:`, options);
             //const coupahost = urlParams.get("coupahost") // gets coupahost 
             window.parent.postMessage(
                 {
